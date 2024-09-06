@@ -60,24 +60,28 @@ VALUES
 
 # Analysis:
 
-# How many movie titles are there in the database (movies only). 
+#1 How many movie titles are there in the database (movies only). 
+
 SELECT count(*) 
 FROM "netflix_titles_info" 
 WHERE type='Movie'
 ;
 
-# When was the most recent batch of TV show/movies added to the database?
+#2 When was the most recent batch of TV show/movies added to the database?
+
 SELECT max(date(date_added)) 
 FROM "netflix_titles_info"
 ;
 
-# Organized all movies/TV shows in alphabetical order.
+#3 Organized all movies/TV shows in alphabetical order.
+
 SELECT title
 FROM "netflix_titles_info"
 ORDER BY title asc
 ;
 
-# Found the Director of the movie title "The Starling".
+#4 Found the Director of the movie title "The Starling".
+
 SELECT title, director
 FROM "netflix_people" people
 INNER JOIN "netflix_titles_info" titles
@@ -85,7 +89,8 @@ ON people.show_id=titles.show_id
 WHERE titles.title='The Starling'
 ;
 
-# Found the oldest movie in the database and what year it was released.
+#5 Found the oldest movie in the database and what year it was released.
+
 SELECT title, release_year 
 FROM "netflix_titles_info" 
 WHERE type = 'Movie' 
