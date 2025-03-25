@@ -8,8 +8,8 @@ WHERE Quantity <> ''
 AND Quantity <>'Quantity Ordered'
 ;
 
--- Count orders based on recorded quantities, ensuring I only included rows where an actual purchase was made.
--- Using quantity, assuming all real orders have a quantity recorded.
+# Count orders based on recorded quantities, ensuring I only included rows where an actual purchase was made.
+# Using quantity, assuming all real orders have a quantity recorded.
 
 #OR
 
@@ -19,7 +19,7 @@ WHERE length(orderid) = 6
 AND orderid <> 'Order ID'
 ;
 
--- This query counts orders based on valid orderid values, filtering out potential headers or incorrectly formatted entries to ensure accuracy.
+# This query counts orders based on valid orderid values, filtering out potential headers or incorrectly formatted entries to ensure accuracy.
 
 #2. How many of those orders were for an iPhone?
 
@@ -30,7 +30,7 @@ AND length(orderid) = 6
 AND orderid <> 'Order ID'
 ;
 
--- Specifically filtered for Product = 'iPhone' while ensuring valid orderid values to count only iPhone orders.
+# Specifically filtered for Product = 'iPhone' while ensuring valid orderid values to count only iPhone orders.
 
 #3. Select the customer account numbers for all the orders that were placed in February.
 
@@ -42,7 +42,7 @@ WHERE length(orderid) = 6
 AND orderid <> 'Order ID'
 ;
 
--- JOIN is used between the customers and February sales tables to link orders to account numbers, ensuring only valid orders were counted.
+# JOIN is used between the customers and February sales tables to link orders to account numbers, ensuring only valid orders were counted.
 
 #4. Which product was the cheapest one sold in January, and what was the price?
 
@@ -51,7 +51,7 @@ FROM BIT_DB.JanSales
 ORDER BY price ASC LIMIT 1
 ;  
 
---This query is used to find the cheapest product by sorting all prices in ascending order and selecting the first result, making it a quick and simple approach.
+# This query is used to find the cheapest product by sorting all prices in ascending order and selecting the first result, making it a quick and simple approach.
 
 #OR
 
@@ -60,7 +60,7 @@ FROM BIT_DB.JanSales
 WHERE  price in (SELECT min(price) FROM BIT_DB.JanSales)
 ;
 
---This query ensures that if multiple products share the lowest price, they are all included in the results by filtering based on the minimum price.
+# This query ensures that if multiple products share the lowest price, they are all included in the results by filtering based on the minimum price.
 
 #5. What is the total revenue for each product sold in January?
 
@@ -70,7 +70,7 @@ FROM BIT_DB.JanSales
 GROUP BY product
 ;
 
--- Calculated total revenue per product by multiplying the sum of quantities by the price, ensuring accurate revenue grouping per product.
+# Calculated total revenue per product by multiplying the sum of quantities by the price, ensuring accurate revenue grouping per product.
 
 #6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
 
@@ -82,7 +82,7 @@ WHERE location= '548 Lincoln St, Seattle, WA 98101'
 GROUP BY product
 ;
 
---I filtered sales by a specific location and grouped by product to get total units sold and revenue per product at that address.
+# I filtered sales by a specific location and grouped by product to get total units sold and revenue per product at that address.
 
 #7. How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers?
 
@@ -96,7 +96,7 @@ AND Length(orderid)=6
 AND orderid<>'Order ID'
 ;
 
--- Counted distinct customers who ordered more than two products in a single transaction and calculated their average spending to analyze high-volume buyers.
+# Counted distinct customers who ordered more than two products in a single transaction and calculated their average spending to analyze high-volume buyers.
 
 #8. List all the products sold in Los Angeles in February, and include how many of each were sold.
 
@@ -117,7 +117,7 @@ GROUP BY location
 HAVING count(orderID)>2
 ;
 
--- Grouped orders by location in New York, counted orders per location, and used HAVING >2 to find places that received at least three orders.
+# Grouped orders by location in New York, counted orders per location, and used HAVING >2 to find places that received at least three orders.
 
 #10. How many of each type of headphones were sold in February?
 
@@ -138,7 +138,7 @@ WHERE length(orderid) = 6
 AND orderid <> 'Order ID'
 ;
 
--- Joined the sales and customers tables to link spending to accounts and calculated the average amount spent per account.
+# Joined the sales and customers tables to link spending to accounts and calculated the average amount spent per account.
 
 #12. What was the average quantity of products purchased per account in February?
 
@@ -150,7 +150,7 @@ WHERE length(orderid) = 6
 AND orderid <> 'Order ID'
 ;
 
--- Summed the total quantities purchased and divided by the number of unique accounts to determine the average number of products per customer.
+# Summed the total quantities purchased and divided by the number of unique accounts to determine the average number of products per customer.
 
 #13. Which product brought in the most revenue in January and how much revenue did it bring in total?
 
@@ -162,5 +162,5 @@ ORDER BY sum(quantity*price) desc
 LIMIT 1
 ;
 
--- Grouped sales by product, calculated total revenue per product, and sorted in descending order with a limit of 1 row to find the highest-earning product.
+# Grouped sales by product, calculated total revenue per product, and sorted in descending order with a limit of 1 row to find the highest-earning product.
 
