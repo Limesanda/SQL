@@ -39,6 +39,8 @@ ORDER BY popularity desc
 LIMIT 10
 ;
 
+# determine the top 10 artists and their tracks by averaging popularity scores, grouping by artist and track, and sorting in descending order to highlight the most popular ones.
+
 #2 Is there a correlation between danceability and energy levels?
 
 SELECT danceability
@@ -58,6 +60,8 @@ AND popularity>80
 ORDER BY popularity desc
 ;
 
+#I used the this query to find tracks that are both high-energy and highly popular by filtering for energy levels above 0.8 and popularity above 80, then sorting by popularity to highlight the biggest hits.
+
 #4 Calculate the average popularity for the artists in the Spotify data table. Then, for every artist with an average popularity of 90 or above, show their name, their average popularity, and label them as a “Top Star”.
 
 WITH popularity_average_CTE AS (
@@ -68,13 +72,13 @@ GROUP BY s.artist_name
 )
  
 SELECT  artist_name,
-        average_popularity,
-        'Top Star' AS tag
+average_popularity,
+'Top Star' AS tag
 FROM popularity_average_CTE
 WHERE average_popularity>=90
 ;
 
-
+#calculate the average popularity for each artist, then filtered for those with an average of 90 or above, labeling them as "Top Stars" to easily identify the most popular artists.
 
 
 
