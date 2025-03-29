@@ -37,8 +37,12 @@ ORDER BY price desc;
 
 #2 Show a statistic about the item prices.
 
-SELECT avg(price)
-FROM superstore;
+SELECT item_name, SUM(stock_quantity), average_rating
+FROM superstore
+GROUP BY item_name
+ORDER BY average_rating desc;
+
+#This query shows the highest average rated product in coorilation with stock quanity.
 
 #3 Show a statistic about the price for items in the category of "Kitchen Supplies". 
 
@@ -48,6 +52,7 @@ WHERE category="Kitchen Supplies"
 
 #4 Use a SELECT statement to show stock qunatity 
 
-SELECT item_name, stock_quantity
+SELECT SUM(stock_quantity), item_name
 FROM superstore
-ORDER BY stock_quantity desc
+GROUP BY item_name
+ORDER BY stock_quantity asc;
